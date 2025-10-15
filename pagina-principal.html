@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>pagina-principal</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root{
+      --rojo:#FA0112;
+      --gris-header:#D6D0D0;
+      --gris-borde:#E0E0E0;
+      --gris-fondo:#F8F6F6;
+      --negro:#000;
+      --blanco:#fff;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Verdana, sans-serif;background:var(--blanco);color:var(--negro);line-height:1.5}
+
+    /* HEADER */
+    header{
+      display:flex;
+	  justify-content:space-between;
+	  align-items:center;
+	  padding:15px 40px;
+	  background:var(--gris-header);
+    }
+    header .texto {
+      font-size: 17px;
+      color: var(--blanco);
+    }
+    .logo {
+	  flex: 1;
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	}
+
+	.logo img {
+	  max-height: 80px;
+	  max-width: 180px;
+	  object-fit: contain;
+	}
+    nav a{color:var(--blanco);text-decoration:none;font-weight:200;font-size:14px; padding: 0 15px;}
+
+    /* BÚSQUEDA */
+    .search-container{padding:22px 0;text-align:center;border-bottom:1px solid var(--gris-borde)}
+    .search-container input{
+      width:60%;
+      max-width:560px;
+      padding:12px 16px;
+      border-radius:24px;
+      border:1px solid var(--gris-borde);
+      font-size:16px;
+    }
+
+    main{max-width:1200px;margin:30px auto;padding:0 18px}
+
+   /* TEMAS */
+    h2.section-title{font-size:20px;margin-bottom:16px;font-weight:700}
+    .temas{
+      display:flex;
+      gap:20px;
+      overflow-x:auto;
+      padding-bottom:18px;
+      border-bottom:1px solid var(--gris-borde);
+    }
+    .tema-card{
+      min-width:200px;
+      background:var(--blanco);
+      flex-shrink:0;
+      text-align:center;
+      font-family: Verdana, sans-serif;
+      color: var(--negro);
+      text-decoration: none;
+    }
+    .tema-card:link,
+    .tema-card:visited {
+      color: var(--negro);
+      text-decoration: none;
+    }
+    .tema-card:hover {
+      opacity: 0.8;
+    }
+    .tema-card .thumb{
+      border:3px solid var(--rojo);
+	  background:var(--rojo);
+      border-radius:16px;
+      overflow:hidden;
+    }
+    .tema-card img{
+      width:100%;
+      height:120px;
+      object-fit:cover;
+      display:block;
+    }
+    .tema-card .info{padding:10px 6px 0}
+    .tema-card .info h3{font-size:14px;margin-bottom:6px;font-weight:300}
+    .tema-card .info p{font-size:11px;color:#666}
+
+    /* EDITADOS */
+    .editados{margin-top:28px}
+    .editados-grid{
+      display:flex;
+      gap:36px;
+      margin-top:12px;
+	  margin-left: 30px;
+      align-items:flex-start;
+      justify-content:space-between;
+    }
+    .edit-card{
+      width:calc((80% - 72px) / 3);
+      min-width:200px;
+      position:relative;
+      font-family: Verdana, sans-serif;
+      color: var(--negro);
+      text-decoration: none;
+    }
+    .edit-card:link,
+    .edit-card:visited {
+      color: var(--negro);
+      text-decoration: none;
+    }
+    .edit-card:hover {
+      opacity: 0.8;
+    }
+    .edit-card .numero{
+      position:absolute;
+      top:0;
+      left:-28px;
+      font-size:36px;
+      font-weight:900;
+      color:var(--negro);
+    }
+    .edit-card .thumb{
+      border:3px solid var(--gris-borde);
+	  background:var(--gris-borde);
+	  width:100%;
+      border-radius:15px;
+      overflow:hidden;
+    }
+    .edit-card .thumb img{
+      width:100%;
+      height:140px;
+      object-fit:cover;
+      display:block;
+    }
+    .edit-texto{
+      margin-top:8px;
+    }
+    .edit-texto h3{
+      font-size:16px;
+      font-weight:200;
+      margin-bottom:6px;
+    }
+    .edit-texto p{
+      font-size:12px;
+      color:#777;
+    }
+
+    /* FOOTER */
+    footer{
+      background:#111;
+      color:var(--blanco);
+      padding:36px 18px;
+      margin-top:40px;
+      text-align:center;
+    }
+    footer .brand{font-size:20px;font-weight:800;margin-bottom:8px}
+    footer .uvm {
+	  flex: 1;
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	}
+
+	.uvm img {
+	  max-height: 80px;
+	  max-width: 180px;
+	  object-fit: contain;}
+    footer .social a{display:inline-block;margin:0 10px;color:var(--blanco);font-size:22px;transition:0.3s}
+    footer .social a:hover{color:var(--rojo)}
+
+    /* ICONOS */
+    @media (max-width:900px){
+      .edit-card{width:calc((100% - 36px) / 2)}
+    }
+    @media (max-width:600px){
+      header{padding:14px 16px;flex-direction:column;gap:10px;}
+      .search-container input{width:92%}
+      .editados-grid{flex-direction:column;gap:22px}
+      .edit-card{width:100%}
+      .edit-card .numero{left:-20px}
+    }
+	/* navegación */ 
+	  nav b{color:var(--blanco);text-decoration:none;font-weight:200;font-size:15px; padding: 0 15px;}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="texto">Bienvenido a Wiki UVM</div>
+    <div class="logo"><img src="img/logo_uvm_blanco.jpg" alt="Logo"></div>
+    <nav>
+       <a href="#">Inicio</a>
+       <a href="#">Comunidad</a>
+       <a href="#">Contacto</a>
+       <a href="#">Foros</a>
+    </nav>
+  </header>
+
+  <div class="search-container">
+    <input type="text" placeholder="Buscar...">
+  </div>
+
+  <main>
+    <!-- TEMAS -->
+<section aria-labelledby="temas-title">
+  <h2 id="temas-title" class="section-title">Temas</h2>
+  <div class="temas">
+
+    <a href="PaginaArticulo.html" class="tema-card">
+      <div class="thumb">
+        <img src="img/diseno-editorial-1200x630.2e16d0ba.fill-767x384.jpg" alt="Diseño gráfico para páginas WEB">
+      </div>
+      <div class="info">
+        <h3>Diseño gráfico para páginas WEB</h3>
+        <p>Jane Drinks · 13 June 2023</p>
+      </div>
+    </a>
+
+    <a href="ArticuloExperienciaUsuario.html" class="tema-card">
+      <div class="thumb">
+        <img src="img/por-que-estudiar-diseno-web.jpg" alt="Diseño Web">
+      </div>
+      <div class="info">
+        <h3>Experiencia de Usuario (UX)</h3>
+        <p>Tony Hungry · 13 June 2023</p>
+      </div>
+    </a>
+
+    <a href="ArticuloDiseñoWEB.html" class="tema-card">
+      <div class="thumb">
+        <img src="img/DesignThinking-2.jpg" alt="Diseño Thinking">
+      </div>
+      <div class="info">
+        <h3>Diseño Web</h3>
+        <p>Tony Hungry · 13 June 2023</p>
+      </div>
+    </a>
+
+    <a href="ArticuloDesingThinking.html" class="tema-card">
+      <div class="thumb">
+        <img src="img/banner-diseno-centrado-usuario.jpg" alt="Diseño centrado en el usuario">
+      </div>
+      <div class="info">
+        <h3>Design Thinking</h3>
+        <p>Jane Drinks · 13 June 2023</p>
+      </div>
+    </a>
+
+    <a href="ArticuloDCU.html" class="tema-card">
+      <div class="thumb">
+        <img src="img/portada-importancia-diseno-experiencia-usuario.jpg" alt="Diseño de interacción">
+      </div>
+      <div class="info">
+        <h3>Diseño Centrado en el Usuario (DCU)</h3>
+        <p>Jane Drinks · 13 June 2023</p>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+    <!-- EDITADOS -->
+<section class="editados" aria-labelledby="editados-title">
+  <h2 id="editados-title" class="section-title">Editados recientemente</h2>
+
+  <div class="editados-grid">
+    <a href="ArticuloDCU.html" class="edit-card">
+      <div class="numero">1</div>
+      <div class="thumb"><img src="img/dibujo-ilustrador-de-vista-lateral-en-el-ipad.jpg" alt="Diseño de interacción"></div>
+      <div class="edit-texto">
+        <h3>Diseño Centrado en el Usuario (DCU)</h3>
+        <p>Jane Drinks</p>
+      </div>
+    </a>
+
+    <a href="ArticuloArquitecturaInformacion.html" class="edit-card">
+      <div class="numero">2</div>
+      <div class="thumb"><img src="img/desarrollador-asiatico-creando-escenas-de-juegos-en-3d.jpg" alt="Arquitectura de la Información"></div>
+      <div class="edit-texto">
+        <h3>Arquitectura de la Información</h3>
+        <p>Tom Jerry</p>
+      </div>
+    </a>
+
+    <a href="ArticuloDiseñoNavegacion.html" class="edit-card">
+      <div class="numero">3</div>
+      <div class="thumb"><img src="img/ilustradora-adulta-que-trabaja-en-un-dispositivo-de-tableta.jpg" alt="Diseño de Navegación"></div>
+      <div class="edit-texto">
+        <h3>Diseño de Navegación</h3>
+        <p>Tom Jerry</p>
+      </div>
+    </a>
+  </div>
+</section>
+  </main>
+
+  <footer>
+    <div class="brand">WIKI UVM</div>
+    <div class="uvm"><img src="img/logo_uvm_blanco.jpg" alt="Logo"></div>
+    <div class="social">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+	<nav>
+      <b href="#">Contacto</b>
+      <b href="#">Autores</b>
+      <b href="#">Archivo</b>
+      <b href="#">Comunidad</b>
+	  <b href="#">Sobre Nosotros</b>
+    </nav>	
+    </div>
+  </footer>
+</body>
+</html>
