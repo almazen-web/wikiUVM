@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Página principal</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root{
+      --rojo:#FA0112;
+      --gris-header:#D6D0D0;
+      --gris-borde:#E0E0E0;
+      --gris-fondo:#F8F6F6;
+      --negro:#000;
+      --blanco:#fff;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Verdana, sans-serif;background:var(--blanco);color:var(--negro);line-height:1.5}
+
+    /* HEADER */
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:15px 40px;
+      background:var(--gris-header);
+      position: relative;
+      z-index: 1000;
+    }
+    header .texto {
+      font-size: 17px;
+      color: var(--blanco);
+    }
+    .logo {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .logo img {
+      max-height: 80px;
+      max-width: 180px;
+      object-fit: contain;
+      cursor: pointer;
+    }
+    nav a{color:var(--blanco);text-decoration:none;font-weight:200;font-size:14px; padding: 0 15px;}
+
+    /* BÚSQUEDA */
+    .search-container{padding:22px 0;text-align:center;border-bottom:1px solid var(--gris-borde)}
+    .search-container input{
+      width:60%;
+      max-width:560px;
+      padding:12px 16px;
+      border-radius:24px;
+      border:1px solid var(--gris-borde);
+      font-size:16px;
+    }
+
+    main{max-width:1200px;margin:30px auto;padding:0 18px}
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #fff;
+    }
+	  
+    /* Contenedor general */
+    .container {
+      display: flex;
+    }
+
+    /* Menú lateral */
+    .sidebar {
+      width: 300px;
+      background: #d62828;
+      color: #fff;
+      min-height: calc(300vh - 160px);
+      position: fixed;
+      left: 0;
+      top: 70px;
+      bottom: 120px;
+      padding: 30px;
+      overflow-y: auto;
+      transition: left 0.3s ease;
+    }
+    .sidebar.closed {
+      left: -280px;
+    }
+    .sidebar h2 {
+      margin-top: 0;
+      font-size: 18px;
+      border-bottom: 1px solid #fff;
+      padding-bottom: 10px;
+    }
+    .sidebar ul {list-style: none;padding: 0;margin: 0;}
+    .sidebar ul li {margin: 12px 0;}
+    .sidebar ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 15px;
+      transition: 0.3s;
+    }
+    .sidebar ul li a:hover {text-decoration: underline;}
+
+    /* Botón toggle */
+    .toggle-btn {
+      position: absolute;
+      top: 10px;
+      right: -35px;
+      background: #d62828;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      border: 1px solid #fff;
+      color: #fff;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    /* Contenido */
+    .content {
+      margin-left: 320px;
+      padding: 20px;
+      max-width: 1000px;
+      transition: margin-left 0.3s ease;
+    }
+    .content.expanded {
+      margin-left: 40px;
+    }
+    .content h1 {font-size: 24px;margin-bottom: 10px;}
+    .content h2 {font-size: 20px;color: #333;margin-top: 30px;}
+    .content p {text-align: justify;line-height: 1.5em;color: #333;}
+
+    /* Sección imágenes / video */
+    .imagenes {
+      display: flex;
+      justify-content: space-between;
+      margin: 30px 0;
+      gap: 20px;
+    }
+    .imagenes img,
+    .imagenes video {
+      width: 48%;
+      height: 200px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      object-fit: cover;
+    }
+
+    /* Comentarios */
+    .comentarios {margin-top: 30px;}
+    .comentarios h3 {font-size: 18px;}
+    .comentarios label {display: block;margin: 10px 0;}
+    .comentarios button {
+      background: #d62828;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .comentarios button:hover {background: #b81f1f;}
+
+    /* Relacionado */
+    .relacionado {margin-top: 40px;}
+    .relacionado h3 {font-size: 20px;margin-bottom: 20px;}
+    .rel-cards {display: flex;gap: 20px;}
+    .card {
+      flex: 1;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      text-align: center;
+      overflow: hidden;
+      background: #fff;
+    }
+    .card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+    }
+    .card p {padding: 10px;margin: 0;font-size: 14px;}
+    .card small {display: block;padding-bottom: 10px;color: #666;}
+
+    /* FOOTER */
+    footer{
+      background:#111;
+      color:var(--blanco);
+      padding:36px 18px;
+      margin-top:40px;
+      text-align:center;
+      position: relative;
+      z-index: 1000;
+    }
+    footer .brand{font-size:20px;font-weight:800;margin-bottom:8px}
+    footer .uvm {display: flex;justify-content: center;align-items: center;}
+    .uvm img {max-height: 80px;max-width: 180px;object-fit: contain;}
+    footer .social a{display:inline-block;margin:0 10px;color:var(--blanco);font-size:22px;transition:0.3s}
+    footer .social a:hover{color:var(--rojo)}
+    nav b{color:var(--blanco);text-decoration:none;font-weight:200;font-size:15px; padding: 0 15px;}
+  </style>
+</head>
+	
+<body>
+  <header>
+    <div class="texto">Bienvenido a Wiki UVM</div>
+    <div class="logo">
+      <a href="index.html">
+        <img src="img/logo_uvm_blanco.jpg" alt="LogotipoUVM">
+      </a>
+    </div>
+    <nav>
+       <a href="index.html">Inicio</a>
+       <a href="#">Comunidad</a>
+       <a href="#">Contacto</a>
+       <a href="#">Foros</a>
+    </nav>
+  </header>
+
+  <div class="search-container">
+    <input type="text" placeholder="Buscar...">
+  </div>
+
+  <main>
+    <div class="container">
+      <!-- Sidebar -->
+      <nav class="sidebar" id="sidebar">
+        <div class="toggle-btn" id="toggleBtn">X</div>
+        <h2>CONTENIDOS</h2>
+        <ul>
+          <li><a href="PaginaArticulo.html">Diseño gráfico para páginas WEB</a></li>
+          <li><a href="ArticuloExperienciaUsuario.html">Experiencia de Usuario (UX)</a></li>
+          <li><a href="ArticuloDiseñoWEB.html">Diseño Web</a></li>
+          <li><a href="ArticuloDesingThinking.html">Design Thinking</a></li>
+          <li><a href="ArticuloDCU.html">Diseño Centrado en el Usuario (DCU)</a></li>
+          <li><a href="ArticuloIxD.html">Diseño de Interacción (IxD)</a></li>
+          <li><a href="ArticuloArquitecturaInformacion.html">Arquitectura de Información</a></li>
+          <li><a href="ArticuloDiseñoNavegacion.html">Diseño de Navegación</a></li>
+        </ul>
+      </nav>
+
+      <!-- Contenido -->
+      <main class="content" id="content">
+        <!-- texto del artículo -->
+        <h1>Diseño gráfico para páginas web</h1>
+        <p><strong>1 de junio 2023</strong></p>
+
+        <h2>Introducción</h2>
+        <p>Hoy en día, los diseñadores deben considerar no solo los colores, tipografías e imágenes, sino también la interacción, la usabilidad y la adaptación a múltiples dispositivos. Un buen diseño gráfico web es, al mismo tiempo, estético y práctico.</p>
+
+        <h2>Contenido</h2> <p><strong>1. El papel de las imágenes vectoriales en el diseño web</strong></p> <p>Las imágenes vectoriales son un recurso indispensable en diseño digital, porque permiten trabajar con gráficos escalables, nítidos y ligeros. A diferencia de las imágenes rasterizadas (como un .JPG), los vectores no pierden calidad al ampliarse y se adaptan perfectamente a distintos tamaños de pantalla.&nbsp;</p> <p>&nbsp;</p> <p>En diseño web se utilizan para crear:&nbsp;</p> <p>Iconos.&nbsp;</p> <p>Infografías.</p> <p>Ilustraciones para encabezados.</p> <p>Fondos decorativos.</p> <p>&nbsp;</p> <p>&nbsp;📌 Ejemplo 1:&nbsp;</p> <p>Imagen vectorial → fondo-isometrico-degradado-movil-3d</p> <p>Archivos: .EPS, .AI y .JPG</p> <p>Fuente: Freepik</p> <p>Este recurso puede aplicarse como fondo de un banner principal en una página de inicio, generando una atmósfera tecnológica y moderna.</p> <p>&nbsp;</p> <p>&nbsp;📌 Ejemplo 2: Imagen vectorial → portatil-con-elementos-de-negocios-en-diseno-plan</p> <p>&nbsp;Archivos: .EPS, .JPG&nbsp;</p> <p>&nbsp;Fuente: Freepik&nbsp;</p> <p>&nbsp;Este diseño es ideal para secciones de servicios o apartados de presentación corporativa, donde se necesita una gráfica clara y profesional que comunique el entorno laboral y digital.&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;<strong>2. El rol del video en la comunicación visual web&nbsp;</strong></p> <p>&nbsp;El video es otro de los recursos gráficos más poderosos en el diseño web. Su capacidad para captar la atención en segundos lo convierte en un aliado clave en páginas de inicio, presentaciones de productos o campañas de marketing digital.&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;El video de ejemplo seleccionado es breve y dinámico, lo que lo hace perfecto para integrarse como fondo animado o recurso en una sección de presentación.&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;📌 Ejemplo 3: Video → Marketing Digital Duración: 8 segundos Archivo: .MP4 Fuente: Freepik Este material puede usarse como introductorio en la cabecera de una web corporativa, creando impacto visual desde el primer momento.&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;<strong>3. Integración de recursos gráficos en la experiencia web</strong>.&nbsp;</p> <p>&nbsp;La clave del diseño gráfico para páginas web está en la integración coherente de elementos. No se trata de colocar imágenes y videos al azar, sino de pensar cómo cada recurso refuerza la identidad de la marca y la experiencia del usuario.&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;Buenas prácticas de integración: Usar imágenes vectoriales para íconos, menús y elementos escalables. Incorporar videos breves y ligeros que comuniquen rápido sin afectar la velocidad de carga.&nbsp;</p> <p>&nbsp;Mantener la consistencia visual: paleta de colores, tipografía y estilo gráfico uniforme.&nbsp;</p> <p>&nbsp;Optimizar todos los recursos para que el sitio cargue rápido, incluso en dispositivos móviles.&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> <p><strong>4. Conexión con la experiencia de usuario (UX) </strong>.</p> <p>&nbsp;Cada recurso gráfico debe estar pensado desde la perspectiva del usuario. Un diseño atractivo pero confuso puede generar frustración y abandono. Por eso, el diseño gráfico web no solo busca impacto visual, sino también claridad y accesibilidad.&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;Los vectores aportan orden y ligereza, mientras que los videos añaden dinamismo y emoción. Bien combinados, construyen una experiencia de usuario más memorable.&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;<strong>Conclusión:</strong>&nbsp;</p> <p>&nbsp;El diseño gráfico para páginas web es una herramienta clave para comunicar, emocionar y guiar al usuario en el entorno digital. Los recursos multimedia como imágenes vectoriales y videos enriquecen la experiencia, siempre que se usen de forma estratégica. Los ejemplos presentados muestran cómo estos elementos pueden integrarse en una web real: Vectores → para ilustrar, dar estilo y reforzar la identidad visual. Video → para captar la atención y transmitir mensajes de manera dinámica. De esta manera, el diseño gráfico se convierte en un puente entre la estética y la funcionalidad, logrando páginas web que no solo se ven bien, sino que también se sienten bien al usarlas.</p>
+
+        <div class="imagenes">
+          <img src="img/diseno-editorial-1200x630.2e16d0ba.fill-767x384.jpg" alt="Imagen 1">
+          <video controls>
+            <source src="video/Asesores Digitales.mov" type="video/mp4">
+            Tu navegador no soporta el video.
+          </video>
+        </div>
+
+        <div class="comentarios">
+          <h3>Comentarios</h3>
+          <label><input type="radio" name="coment" value="me-encanta"> Me encanta</label>
+          <label><input type="radio" name="coment" value="interesante"> Este tema es muy interesante</label>
+          <button>Añadir</button>
+        </div>
+
+        <div class="relacionado">
+          <h3>Relacionado</h3>
+         <div class="rel-cards">
+		  <a href="ArticuloDiseñoWEB.html" class="card">
+			<img src="img/desarrollador-asiatico-creando-escenas-de-juegos-en-3d.jpg" alt="Diseño Web">
+			<p>Diseño Web</p>
+			<small>11 junio 2023</small>
+		  </a>
+		  <a href="ArticuloDesingThinking.html" class="card">
+			<img src="img/dibujo-ilustrador-de-vista-lateral-en-el-ipad.jpg" alt="Design Thinking">
+			<p>Design Thinking</p>
+			<small>11 junio 2023</small>
+		  </a>
+		  <a href="ArticuloDCU.html" class="card">
+			<img src="img/ilustradora-adulta-que-trabaja-en-un-dispositivo-de-tableta.jpg" alt="Diseño centrado en el usuario">
+			<p>Diseño centrado en el usuario</p>
+			<small>11 junio 2023</small>
+		  </a>
+		</div>
+        </div>
+      </main>
+    </div>
+	  
+    <footer>
+      <div class="brand">WIKI UVM</div>
+      <div class="uvm"><img src="img/logo_uvm_blanco.jpg" alt="LogotipoUVM"></div>
+      <div class="social">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <nav>
+          <b href="#">Contacto</b>
+          <b href="#">Autores</b>
+          <b href="#">Archivo</b>
+          <b href="#">Comunidad</b>
+          <b href="#">Sobre Nosotros</b>
+        </nav>	
+      </div>
+    </footer>
+  </main>	  
+
+  <script>
+  const toggleBtn = document.getElementById('toggleBtn');
+  const sidebar = document.getElementById('sidebar');
+  const content = document.getElementById('content');
+
+  toggleBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('closed');
+    content.classList.toggle('expanded');
+    toggleBtn.textContent = sidebar.classList.contains('closed') ? '➡' : 'X';
+  });
+</script>
+</body>
+</html>
